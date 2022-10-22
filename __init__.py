@@ -27,7 +27,7 @@ from mycroft import MycroftSkill, intent_file_handler
 from mycroft.skills.audioservice import AudioService
 from mycroft.messagebus.message import Message
 
-class CalamityScared(MycroftSkill):
+class CalamityEvents(MycroftSkill):
     def __init__(self):
         MycroftSkill.__init__(self)
 
@@ -48,7 +48,7 @@ class CalamityScared(MycroftSkill):
         self.cancel_scheduled_event('random_fart'+str(self.counter))
         self.counter += 1
         self.schedule_event(self.handle_fart_event, datetime.now() 
-                            + timedelta(seconds=random.randrange(30, 60)),
+                            + timedelta(seconds=random.randrange(1200, 1500)),
                             name='random_fart'+str(self.counter))
         self.fart_and_comment()
 
@@ -59,7 +59,7 @@ class CalamityScared(MycroftSkill):
         #self.speak_dialog('random_farting')
         self.random_farting = True
         self.schedule_event(self.handle_fart_event, datetime.now()
-                            + timedelta(seconds=random.randrange(30, 60)),
+                            + timedelta(seconds=random.randrange(1200, 1500)),
                             name='random_fart'+str(self.counter))
 
     @intent_file_handler('farting.intent')
@@ -88,5 +88,5 @@ class CalamityScared(MycroftSkill):
 
 
 def create_skill():
-    return CalamityScared()
+    return CalamityEvents()
 
